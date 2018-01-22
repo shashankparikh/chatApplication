@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html>
 
 <head>
@@ -58,6 +58,87 @@
 					</div>
 
 
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+	
+		<script src="node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-animate/angular-animate.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="node_modules/angular-aria/angular-aria.js"></script>
+		<script src="node_modules/angular-material/angular-material.js"></script>
+
+		<script src="components/chatController.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+		<script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="node_modules/angular-ui-carousel/dist/ui-carousel.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+
+
+
+
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Chat Application</title>
+
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/mdi/css/materialdesignicons.min.css" media="all">
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body ng-app="classifieds" ng-controller="classifiedsctrl">
+
+	<ui-view></ui-view>
+
+	<div class="container" style="margin:0px;margin-top: 12px;min-width: 100%; min-height:100%;">
+		<div class="row">
+			<div class="col-md-3 user-list-container">
+				<div class="list-group">
+					<button ng-repeat="user in details" type="button" class="list-group-item" ng-click="selectCurrentUser(user);">
+						<div>
+							<img ng-src="{{user.img}}" class="user-image">
+							<div class="user-name">{{user.user}}</div>
+							<!-- <div class="preview-last-message">{{user.user}}</div> -->
+					</button>
+					</div>
+				</div>
+				<div class="col-md-9 message-container">
+
+					<div class="show-message" ng-repeat="message in messages track by message.created">
+						<div class="user-message" ng-if="message.id == currentUser.id && message.createdBy == loggedUser.id">{{message.text}}<br></div>
+						<br>
+						<div class="friend-message" ng-if="message.id == loggedUser.id && message.createdBy == currentUser.id">{{message.text}}</div>
+						<br>
+						<br>
+					</div>
+					<br>
+					<div class="input-group chat-input-container">
+						<input type="text" class="form-control chat-input-box" id="messageText" placeholder="Click for Reply..." ng-model="content">
+						<br>
+						<button class="input-group-btn btn btn-primary send-button" type="button" ng-click="sendContent(content);">
+								<i class="fa fa-paper-plane" aria-hidden="true"></i>
+								Send
+						</button>
+					</div>
+					<br>
 				</div>
 			</div>
 
